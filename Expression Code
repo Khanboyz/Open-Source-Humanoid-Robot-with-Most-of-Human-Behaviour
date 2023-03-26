@@ -9,7 +9,7 @@ class MHBHumanoid
     unsigned long partial_time;
 
     /* Method declaration */
-    void init_hash();
+    void init_IOB();
     void set_servo(int servo, int servo_pwm);
     void initial_position();
     void move_servo(int time, int  servo_target[]);
@@ -22,7 +22,7 @@ class MHBHumanoid
     void crying_face();
 
     void say_hi(int count = 1);
-    void my_name_IOB_1.0();
+    void my_name_is_IOB_1.0();
     void i_am_IOB();
     void say_yes();
     void say_no();
