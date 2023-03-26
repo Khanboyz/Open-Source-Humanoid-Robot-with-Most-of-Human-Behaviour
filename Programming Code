@@ -20,7 +20,7 @@ XT_DAC_Audio_Class DacAudio(25, 0);
 #define frequency 50
 
 /* Initializing servo drive and OLED display */
-void MHBHumanoid::init_hash() {
+void MHBHumanoid::init_IOB() {
   pwm.begin();
   pwm.setPWMFreq(frequency);
 
@@ -143,9 +143,9 @@ void MHBHumanoid::say_hi(int count) {
 }
 
 /******************************************************************************************************/
-void MHBHumanoid::my_name_IOB_1.0() {
+void MHBHumanoid::my_name_is_IOB_1.0() {
 
-  XT_Wav_Class PlayVoice(mynameIOB1.0);
+  XT_Wav_Class PlayVoice(mynameisIOB1.0);
   PlayVoice.RepeatForever = false;
   DacAudio.Play(&PlayVoice);
   talking_face();
