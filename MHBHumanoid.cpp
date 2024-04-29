@@ -1,4 +1,4 @@
-#include "MiniHashHumanoid.h"
+#include "MHBHumanoid.h"
 
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
@@ -20,7 +20,7 @@ XT_DAC_Audio_Class DacAudio(25, 0);
 #define frequency 50
 
 /* Initializing servo drive and OLED display */
-void MiniHashHumanoid::init_hash() {
+void MHBHumanoid::init_hash() {
   pwm.begin();
   pwm.setPWMFreq(frequency);
 
@@ -32,12 +32,12 @@ void MiniHashHumanoid::init_hash() {
 }
 
 /* Servo angle setting */
-void MiniHashHumanoid::set_servo(int servo, int servo_pwm) {
+void MHBHumanoid::set_servo(int servo, int servo_pwm) {
   pwm.setPWM(servo, 0, servo_pwm);
 }
 
 /* Initial position */
-void MiniHashHumanoid::initial_position() {
+void MHBHumanoid::initial_position() {
   int pwm_array[16] = {100, 100, 325, 325, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325}; /* RH1,RH2,RL1,RL2,LH1,LH2,LL1,LL2,HEAD,DMY1,DMY2,DMY3,DMY4,DMY5,DMY6 */
   for (int i = 0; i < 16; i++) {
     servo_position[i] = pwm_array[i];
@@ -45,7 +45,7 @@ void MiniHashHumanoid::initial_position() {
   move_servo(2000, pwm_array);
 }
 /* Moving each servo at given time interval */
-void MiniHashHumanoid::move_servo(int time, int  servo_target[]) {
+void MHBHumanoid::move_servo(int time, int  servo_target[]) {
 
   if (time > 10) {
     for (int i = 0; i < 16; i++) {
@@ -77,12 +77,12 @@ void MiniHashHumanoid::move_servo(int time, int  servo_target[]) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::initial_face() {
+void MHBHumanoid::initial_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, initialface, 128, 64, 1);
   display.display();
 }
-void MiniHashHumanoid::bink_eye(int bink_count) {
+void MHBHumanoid::bink_eye(int bink_count) {
 
   for (int i = 1 ; i <= bink_count; i++) {
     display.clearDisplay();
@@ -94,35 +94,35 @@ void MiniHashHumanoid::bink_eye(int bink_count) {
   }
 }
 
-void MiniHashHumanoid::talking_face() {
+void MHBHumanoid::talking_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, talkface, 128, 64, 1);
   display.display();
 }
-void MiniHashHumanoid::happy_face() {
+void MHBHumanoid::happy_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, happyface, 128, 64, 1);
   display.display();
 }
-void MiniHashHumanoid::angry_face() {
+void MHBHumanoid::angry_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, angryface, 128, 64, 1);
   display.display();
 }
 
-void MiniHashHumanoid::sad_face() {
+void MHBHumanoid::sad_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, sadface, 128, 64, 1);
   display.display();
 }
-void MiniHashHumanoid::crying_face() {
+void MHBHumanoid::crying_face() {
   display.clearDisplay();
   display.drawBitmap(0, 0, cryingface, 128, 64, 1);
   display.display();
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::say_hi(int count) {
+void MHBHumanoid::say_hi(int count) {
   XT_Wav_Class PlayVoice(hellohumanoids);
   PlayVoice.RepeatForever = false;
   DacAudio.Play(&PlayVoice);
@@ -143,7 +143,7 @@ void MiniHashHumanoid::say_hi(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::my_name_hash_jr() {
+void MHBHumanoid::my_name_hash_jr() {
 
   XT_Wav_Class PlayVoice(mynamehashjr);
   PlayVoice.RepeatForever = false;
@@ -162,7 +162,7 @@ void MiniHashHumanoid::my_name_hash_jr() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::i_am_mini_robot() {
+void MHBHumanoid::i_am_mini_robot() {
 
   XT_Wav_Class PlayVoice(iamaminirobot);
   PlayVoice.RepeatForever = false;
@@ -181,7 +181,7 @@ void MiniHashHumanoid::i_am_mini_robot() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::say_yes() {
+void MHBHumanoid::say_yes() {
 
   XT_Wav_Class PlayVoice(sayyes);
   PlayVoice.RepeatForever = false;
@@ -196,7 +196,7 @@ void MiniHashHumanoid::say_yes() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::say_no() {
+void MHBHumanoid::say_no() {
 
   XT_Wav_Class PlayVoice(sayno);
   PlayVoice.RepeatForever = false;
@@ -213,7 +213,7 @@ void MiniHashHumanoid::say_no() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::say_thank_you() {
+void MHBHumanoid::say_thank_you() {
 
   XT_Wav_Class PlayVoice(saythankyou);
   PlayVoice.RepeatForever = false;
@@ -228,7 +228,7 @@ void MiniHashHumanoid::say_thank_you() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::controlled_by_esp32() {
+void MHBHumanoid::controlled_by_esp32() {
 
   XT_Wav_Class PlayVoice(iamcontrolledbyesp32);
   PlayVoice.RepeatForever = false;
@@ -247,7 +247,7 @@ void MiniHashHumanoid::controlled_by_esp32() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::i_can_do_facial_exp() {
+void MHBHumanoid::i_can_do_facial_exp() {
 
   XT_Wav_Class PlayVoice(icandofacialexp);
   PlayVoice.RepeatForever = false;
@@ -264,7 +264,7 @@ void MiniHashHumanoid::i_can_do_facial_exp() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::do_happy_face() {
+void MHBHumanoid::do_happy_face() {
   happy_face();
   XT_Wav_Class PlayVoice(happyfacevoice);
   PlayVoice.RepeatForever = false;
@@ -278,7 +278,7 @@ void MiniHashHumanoid::do_happy_face() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::do_angry_face() {
+void MHBHumanoid::do_angry_face() {
   angry_face();
   XT_Wav_Class PlayVoice(angryfacevoice);
   PlayVoice.RepeatForever = false;
@@ -292,7 +292,7 @@ void MiniHashHumanoid::do_angry_face() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::do_sad_face() {
+void MHBHumanoid::do_sad_face() {
   sad_face();
   XT_Wav_Class PlayVoice(sadfacevoice);
   PlayVoice.RepeatForever = false;
@@ -306,7 +306,7 @@ void MiniHashHumanoid::do_sad_face() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::do_crying_face() {
+void MHBHumanoid::do_crying_face() {
   crying_face();
   XT_Wav_Class PlayVoice(cryingfacevoice);
   PlayVoice.RepeatForever = false;
@@ -320,7 +320,7 @@ void MiniHashHumanoid::do_crying_face() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::i_can_dance() {
+void MHBHumanoid::i_can_dance() {
 
   XT_Wav_Class PlayVoice(icandance);
   PlayVoice.RepeatForever = false;
@@ -341,7 +341,7 @@ void MiniHashHumanoid::i_can_dance() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::subscribe_hash() {
+void MHBHumanoid::subscribe_hash() {
 
   XT_Wav_Class PlayVoice(pleasesubscribe);
   PlayVoice.RepeatForever = false;
@@ -358,21 +358,21 @@ void MiniHashHumanoid::subscribe_hash() {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::hands_up() {
+void MHBHumanoid::hands_up() {
 
   int pwm_array1[16] = {525, 100, 325, 325, 125, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(3000, pwm_array1);
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::hands_down() {
+void MHBHumanoid::hands_down() {
 
   int pwm_array1[16] = {100, 100, 325, 325, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(3000, pwm_array1);
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::hand_wave(int count) {
+void MHBHumanoid::hand_wave(int count) {
 
   int pwm_array1[16] = {100, 400, 325, 325, 550, 400, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(1500, pwm_array1);
@@ -387,7 +387,7 @@ void MiniHashHumanoid::hand_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::right_leg_wave(int count) {
+void MHBHumanoid::right_leg_wave(int count) {
 
   int pwm_array1[16] = {100, 100, 325, 375, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   int pwm_array2[16] = {100, 100, 325, 375, 550, 550, 325, 375, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -406,7 +406,7 @@ void MiniHashHumanoid::right_leg_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::left_leg_wave(int count) {
+void MHBHumanoid::left_leg_wave(int count) {
 
   int pwm_array1[16] = {100, 100, 325, 325, 550, 550, 325, 275, 325, 325, 325, 325, 325, 325, 325, 325};
   int pwm_array2[16] = {100, 100, 325, 275, 550, 550, 325, 275, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -425,7 +425,7 @@ void MiniHashHumanoid::left_leg_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::leg_hand_shake(int count) {
+void MHBHumanoid::leg_hand_shake(int count) {
 
   int pwm_array1[16] = {100, 400, 325, 400, 550, 400, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(1000, pwm_array1);
@@ -440,7 +440,7 @@ void MiniHashHumanoid::leg_hand_shake(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::right_slide_wave(int count) {
+void MHBHumanoid::right_slide_wave(int count) {
 
   int pwm_array1[16] = {100, 100, 325, 325, 550, 550, 325, 250, 325, 325, 325, 325, 325, 325, 325, 325};
   int pwm_array2[16] = {100, 325, 325, 250, 550, 325, 325, 250, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -459,7 +459,7 @@ void MiniHashHumanoid::right_slide_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::left_slide_wave(int count) {
+void MHBHumanoid::left_slide_wave(int count) {
 
   int pwm_array1[16] = {100, 100, 325, 400, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   int pwm_array2[16] = {100, 325, 325, 400, 550, 325, 325, 400, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -478,7 +478,7 @@ void MiniHashHumanoid::left_slide_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::move_forward(int steps, int speed) {
+void MHBHumanoid::move_forward(int steps, int speed) {
 
   XT_Wav_Class PlayVoice(icanwalk);
   PlayVoice.RepeatForever = false;
@@ -501,7 +501,7 @@ void MiniHashHumanoid::move_forward(int steps, int speed) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::move_backward(int steps, int speed) {
+void MHBHumanoid::move_backward(int steps, int speed) {
 
   for (int i = 1; i <= steps; i++) {
     int pwm_array1[16] = {100, 100, 375, 300, 550, 550, 375, 300, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -518,7 +518,7 @@ void MiniHashHumanoid::move_backward(int steps, int speed) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::turn_left(int steps, int speed) {
+void MHBHumanoid::turn_left(int steps, int speed) {
 
   for (int i = 1; i <= steps; i++) {
     int pwm_array1[16] = {100, 100, 325, 325, 550, 550, 325, 300, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -543,7 +543,7 @@ void MiniHashHumanoid::turn_left(int steps, int speed) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::turn_right(int steps, int speed) {
+void MHBHumanoid::turn_right(int steps, int speed) {
 
   for (int i = 1; i <= steps; i++) {
     int pwm_array1[16] = {100, 100, 325, 350, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -568,7 +568,7 @@ void MiniHashHumanoid::turn_right(int steps, int speed) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::side_move_right(int steps) {
+void MHBHumanoid::side_move_right(int steps) {
 
   for (int i = 1; i <= steps; i++) {
     int pwm_array1[16] = {100, 100, 325, 325, 550, 550, 325, 400, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -579,7 +579,7 @@ void MiniHashHumanoid::side_move_right(int steps) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::side_move_left(int steps) {
+void MHBHumanoid::side_move_left(int steps) {
 
   for (int i = 1; i <= steps; i++) {
     int pwm_array1[16] = {100, 100, 325, 250, 550, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -590,7 +590,7 @@ void MiniHashHumanoid::side_move_left(int steps) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::flying_hand_wave(int count) {
+void MHBHumanoid::flying_hand_wave(int count) {
 
   int pwm_array1[16] = {100, 475, 325, 325, 550, 175, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(2000, pwm_array1);
@@ -607,7 +607,7 @@ void MiniHashHumanoid::flying_hand_wave(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::jump(int count, int height) {
+void MHBHumanoid::jump(int count, int height) {
   if (height > 30) {
     height = 30;
   }
@@ -621,7 +621,7 @@ void MiniHashHumanoid::jump(int count, int height) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::leg_head_shake(int count) {
+void MHBHumanoid::leg_head_shake(int count) {
 
   for (int i = 1; i <= count; i++) {
     int pwm_array1[16] = {100, 100, 375, 325, 550, 550, 375, 325, 375, 325, 325, 325, 325, 325, 325, 325};
@@ -635,7 +635,7 @@ void MiniHashHumanoid::leg_head_shake(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::flying(int count) {
+void MHBHumanoid::flying(int count) {
 
   int pwm_array1[16] = {100, 400, 325, 325, 550, 250, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(2000, pwm_array1);
@@ -651,7 +651,7 @@ void MiniHashHumanoid::flying(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::leg_shake(int count) {
+void MHBHumanoid::leg_shake(int count) {
 
   for (int i = 1; i <= count; i++) {
     int pwm_array1[16] = {100, 100, 325, 288, 550, 550, 325, 288, 325, 325, 325, 325, 325, 325, 325, 325};
@@ -665,7 +665,7 @@ void MiniHashHumanoid::leg_shake(int count) {
 }
 
 /******************************************************************************************************/
-void MiniHashHumanoid::hand_straight_shake(int count) {
+void MHBHumanoid::hand_straight_shake(int count) {
 
   int pwm_array1[16] = {500, 100, 325, 325, 325, 550, 325, 325, 325, 325, 325, 325, 325, 325, 325, 325};
   move_servo(2000, pwm_array1);
