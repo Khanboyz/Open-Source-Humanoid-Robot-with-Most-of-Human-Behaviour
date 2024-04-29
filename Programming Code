@@ -12,7 +12,7 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 XT_DAC_Audio_Class DacAudio(25, 0);
 
-#include "ExpressionBitmap.h"
+#include "Expression.h"
 #include "VoiceHexData.h"
 
 #define min_pulse_width 100
