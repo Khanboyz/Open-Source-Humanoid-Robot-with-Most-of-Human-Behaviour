@@ -1,2 +1,2 @@
-# Open-Source-Humanoid-Robot-with-Most-of-Human-Behaviour
-Open Source Humanoid Robot with Most of Human Behaviour
+# An Open-Source Framework for Developing Human Behavior in Humanoid Robots
+An Open-Source Framework for Developing Human Behavior in Humanoid Robots
